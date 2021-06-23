@@ -13,6 +13,19 @@ namespace ConsoleUI
         {
 
 
+            //this is where I'll I'll write out my code using the methods above. We'll start with a message
+            //welcoming the guest, then we'll use the GetUserInfo method to run the loop with built in validation
+            //after which, we'll use PrintGuestsName to show the user the created Dictionary of names and numbers
+            //next we'll use GetRaffleNumber to generate my winning info, which will finally be displayed with
+            //PrintWinner followed by balloons.
+            //Other ways to have done this would be to PrintGuestsName after generating the winning info, because
+            //they happen independently.
+            Console.WriteLine("Welcome to the Party!");
+            GetUserInfo();
+            PrintGuestsName();
+            GetRaffleNumber(guests);
+            PrintWinner();
+            //MultiLineAnimation();
         }
         //I begin by initilizing all the independent variables we'll need.
         private static Dictionary<int, string> guests = new Dictionary<int, string>();
@@ -53,6 +66,7 @@ namespace ConsoleUI
         private static void GetUserInfo()
         {
             string name = "";
+            
             while (name != "yes")
             {
                 name = GetUserInput("Please enter guest name");
@@ -72,8 +86,10 @@ namespace ConsoleUI
                         raffleNumber = GenerateRandomNumber(min, max);
                     }
                 }
-                
+                if (name != "yes")
+                    {
                     AddGuestsInRaffle(raffleNumber, name);
+                    }
                 }
 
             }
@@ -104,7 +120,7 @@ namespace ConsoleUI
             {
                 index = random.Next(keys.Count);
             }
-            int winningNumber = keys[index];
+            winningNumber = keys[index];
             
         }
 
@@ -114,7 +130,7 @@ namespace ConsoleUI
         //the Value at the winning raffle number, and then the raffle number.
         private static void PrintWinner()
         {
-            Console.WriteLine($"Congratualtions! {(guests[winningNumber])} has won with the number {winningNumber}");
+            Console.WriteLine($"Congratualtions! {guests[winningNumber]} has won with the number {winningNumber}");
         }
             
        
@@ -130,8 +146,7 @@ namespace ConsoleUI
 
       
        
-        //this is the given code to display the animation. If I finish with enough time, I'll swap around some lines
-        //to transform it from a pendulum thingy into balloons for the party
+        //this is the given code to display the animation with changes to make it balloons on a table instead
         static void MultiLineAnimation() // Credit: https://www.michalbialecki.com/2018/05/25/how-to-make-you-console-app-look-cool/
         {
             var counter = 0;
@@ -143,34 +158,44 @@ namespace ConsoleUI
                 {
                     case 0:
                         {
-                            Console.WriteLine("         ╔════╤╤╤╤════╗");
-                            Console.WriteLine("         ║    │││ \\   ║");
-                            Console.WriteLine("         ║    │││  O  ║");
-                            Console.WriteLine("         ║    OOO     ║");
+                            Console.WriteLine(           "OOO" +
+                                                      "O  │││" +
+                                                      "\\ │││" +
+                                                  "╔════════════╗"+
+                                                  "║            ║"+
+                                                  "║            ║");
+                                                 
                             break;
                         };
                     case 1:
                         {
-                            Console.WriteLine("         ╔════╤╤╤╤════╗");
-                            Console.WriteLine("         ║    ││││    ║");
-                            Console.WriteLine("         ║    ││││    ║");
-                            Console.WriteLine("         ║    OOOO    ║");
+                            Console.WriteLine(         "OOO"+
+                                                      " │││  O" +
+                                                      " │││ //" +
+                                                  "╔════════════╗" +
+                                                  "║            ║" +
+                                                  "║            ║");
                             break;
                         };
                     case 2:
                         {
-                            Console.WriteLine("         ╔════╤╤╤╤════╗");
-                            Console.WriteLine("         ║   / │││    ║");
-                            Console.WriteLine("         ║  O  │││    ║");
-                            Console.WriteLine("         ║     OOO    ║");
+                            Console.WriteLine(      "OOO" +
+                                                 "O  │││" +
+                                                 "\\ │││" +
+                                             "╔════════════╗" +
+                                             "║            ║" +
+                                             "║            ║");
+
                             break;
-                        };
+                        };            
                     case 3:
                         {
-                            Console.WriteLine("         ╔════╤╤╤╤════╗");
-                            Console.WriteLine("         ║    ││││    ║");
-                            Console.WriteLine("         ║    ││││    ║");
-                            Console.WriteLine("         ║    OOOO    ║");
+                            Console.WriteLine(         "OOO" +
+                                                      " │││  O" +
+                                                      " │││ //" +
+                                                  "╔════════════╗" +
+                                                  "║            ║" +
+                                                  "║            ║");
                             break;
                         };
                 }
@@ -181,16 +206,10 @@ namespace ConsoleUI
         }
     
  
-        //this is where I'll I'll write out my code using the methods above. We'll start with a message
-        //welcoming the guest, then we'll use the GetUserInfo method to run the loop with built in validation
-        //after which, we'll use PrintGuestsName to show the user the created Dictionary of names and numbers
-        //next we'll use GetRaffleNumber to generate my winning info, which will finally be displayed with
-        //PrintWinner followed by either the pendulum or balloons.
-        //Other ways to have done this would be to PrintGuestsName after generating the winning info, because
-        //they happen independently.
+       
      
     
-    
+
 
     
     
